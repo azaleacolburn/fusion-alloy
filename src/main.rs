@@ -1,7 +1,17 @@
+use std::path::{Path, PathBuf};
+
 use clap::{Arg, ArgAction, Command};
+use serde::Deserialize;
+
+static CONFIG_FILE_NAME: &str = "config.toml"
+
+#[derive(Deserialize)]
+struct Config {
+    install_location: PathBuf,
+}
 
 fn main() {
-    let matches = Command::new("pacman")
+    let matches = Command::new("alloy")
         .about("Package Manager for Autodesk Fusion")
         .version("0.0.1")
         .subcommand_required(true)
@@ -40,7 +50,17 @@ fn main() {
                 .short_flag('u')
                 .long_flag("update")
                 .about("Update package version."),
-        );
+        )
+        .get_matches();
+
+    match matches.subcommand() {
+        Some(("install", install_matches)) => {}
+        Some(("query", substring_matches)) => {}
+        Some(("list", list_matches)) => {}
+        Some(("update", update_matches)) => {}
+        None => {}
+        _ => {}
+    }
 
     // match matches.subcommand() {
     //     Some(("sync", sync_matches)) => {
