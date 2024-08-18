@@ -1,0 +1,13 @@
+[info]
+name = "Alloy"
+owner_name = "Azalea Colburn"
+email = "azaleacolburn@gmail.com"
+homepage = "[some_url]"
+
+[download]
+git_repo = "https://github.com/azaleacolburn/fusion-alloy"
+checksum = "[some_sha256]" # Used to validate the package
+
+[install]
+script_path_in_repo = "install.sh" # Runs after download, optional
+
