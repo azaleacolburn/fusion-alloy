@@ -15,6 +15,9 @@ struct Config {
 struct Args {
     #[clap(subcommand)]
     command: Command,
+
+    #[clap(short, long, default_value = "false")]
+    dry_run: bool,
 }
 
 #[derive(Subcommand, Debug, Clone)]
@@ -33,6 +36,10 @@ enum Command {
 }
 
 fn main() {
+    let config = toml::from_str::<Config>(
+        &std::fs::read_to_string(CONFIG_FILE_NAME).unwrap_or(String::from("install_location='~/'")),
+    );
+
     let cli = Args::parse();
     println!("{:?}", cli);
 
